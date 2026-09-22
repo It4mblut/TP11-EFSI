@@ -5,7 +5,7 @@ import { SafeAreaProvider,SafeAreaView} from "react-native-safe-area-context";
 import StackNavigator from "./navigation/StackNavigator";
 import BottomBar from "./components/BottomBar";
 
-import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 export default function App() {
   return (
