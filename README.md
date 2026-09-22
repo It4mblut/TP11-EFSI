@@ -1,0 +1,4 @@
+- Cómo se corre el proyecto: Ejecutar npm install y npx expo start en la terminal
+- Forma de validación elegida: React Hook Form
+- Porque se eligió ese tipo de validación: Porque quería practicarlo (tema nuevo)
+- Parte/s del Bonus resueltas: La simulacion de tiempo de carga (al presionar inscribir, el boton se pone en gris y tiene una ruedita que "carga" por 1 segundo para despues pasar al ticket)
