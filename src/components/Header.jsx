@@ -1,69 +1,117 @@
-import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-export default function Header({ vistaActual, setVistaActual, cantidadFavoritos }) {
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+export default function Header() {
+
   return (
-    <View style={styles.header}>
-      <Text style={styles.title}>Pokédex</Text>
-      <View style={styles.nav}>
-        <Pressable style={[styles.navButton, vistaActual === 'inscripcion' && styles.activeButton]} onPress={() => setVistaActual('inscripcion')}>
-          
-          <Text style={styles.navText}>Inscripción</Text>
-        
-        </Pressable>
 
-        <Pressable style={[styles.navButton, vistaActual === 'home' && styles.activeButton]} onPress={() => setVistaActual('home')}>
-          
-          <Text style={styles.navText}>Inicio</Text>
-       
-        </Pressable>
+    <View style={styles.container}>
 
-        <Pressable style={[styles.navButton, vistaActual === 'favorites' && styles.activeButton]} onPress={() => setVistaActual('favorites')}>
+      <Text style={styles.logo}>
+        Instagram
+      </Text>
 
-          <Text style={styles.navText}>Favoritos ({cantidadFavoritos})</Text>
-       
-       </Pressable>
+      <View style={styles.search}>
+
+        <Ionicons
+          name="search-outline"
+          size={18}
+          color="#bbb"
+        />
+
+        <TextInput
+          placeholder="Buscar"
+          placeholderTextColor="#bbb"
+          style={styles.input}
+        />
+
       </View>
+
+      <View style={styles.icons}>
+
+        <TouchableOpacity>
+
+          <Ionicons
+            name="camera-outline"
+            size={24}
+            color="white"
+          />
+
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+
+          <Ionicons
+            name="paper-plane-outline"
+            size={24}
+            color="white"
+          />
+
+        </TouchableOpacity>
+
+      </View>
+
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#e63946',
-    paddingHorizontal: 20,
-    paddingTop: 15,
-    paddingBottom: 15,
-    flexDirection: 'row',
-    justify: 'space-between',
-    alignItems: 'center',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
+
+  container: {
+    height: 60,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+
+    paddingHorizontal: 15,
+
+    backgroundColor: "rgb(0,0,59)",
+
+    borderBottomWidth: 1,
+    borderBottomColor: "#222",
   },
-  title: {
-    color: '#ffffff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    letterSpacing: 1,
+
+  logo: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 24,
   },
-  nav: {
-    flexDirection: 'row',
+
+  search: {
+
+    flex: 1,
+
+    marginHorizontal: 15,
+
+    backgroundColor: "#1c1c4b",
+
+    borderRadius: 10,
+
+    flexDirection: "row",
+    alignItems: "center",
+
+    paddingHorizontal: 10,
+
+    height: 40,
   },
-  navButton: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 20,
+
+  input: {
+    flex: 1,
+    color: "white",
     marginLeft: 8,
   },
-  activeButton: {
-    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+
+  icons: {
+    flexDirection: "row",
+    gap: 15,
   },
-  navText: {
-    color: '#ffffff',
-    fontWeight: '600',
-    fontSize: 14,
-  },
+
 });
