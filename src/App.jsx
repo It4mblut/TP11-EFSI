@@ -5,9 +5,9 @@ import { SafeAreaProvider,SafeAreaView} from "react-native-safe-area-context";
 import StackNavigator from "./navigation/StackNavigator";
 import BottomBar from "./components/BottomBar";
 
+import { AuthProvider } from "./context/AuthContext";
 
 export default function App() {
-
   return (
     <SafeAreaProvider>
 
@@ -34,14 +34,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-
   safe: {
     flex: 1,
     backgroundColor: "rgb(0,0,59)",
   },
-
   container: {
     flex: 1,
   },
-
 });
