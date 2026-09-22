@@ -1,31 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function PostDetallado({ route, navigation }) {
+  const { theme } = useContext(ThemeContext);
   const { post } = route.params;
-const comentarios = [
-  {
-    id: "1",
-    usuario: "@gatitosLindos",
-    texto: "Que hermoso gatito"
-  },
-  {
-    id: "2",
-    usuario: "@michi_fan",
-    texto: "Necesito uno así en mi casa jajaja"
-  },
-   {
-  },
-];
+
+  const comentarios = [
+    { id: "1", usuario: "@gatitosLindos", texto: "Que hermoso gatito", fecha: "Hace 2h" },
+    { id: "2", usuario: "@michi_fan", texto: "Necesito uno así en mi casa jajaja", fecha: "Hace 1h" }
+  ];
+
   const [likes, setLikes] = useState(post.likes);
   const [likeado, setLikeado] = useState(false);
 
@@ -116,36 +102,29 @@ const comentarios = [
         </Text>
         <View style={styles.comentariosContainer}>
 
-<Text style={styles.tituloComentarios}>
-  Comentarios
-</Text>
+          <Text style={styles.tituloComentarios}>
+            Comentarios
+          </Text>
 
+          {comentarios.map((comentario) => (
+            <View
+              key={comentario.id}
+              style={styles.comentario}
+            >
+              <Text style={styles.usuarioComentario}>
+                {comentario.usuario}
+              </Text>
 
-{
-  comentarios.map((comentario)=>(
+              <Text style={styles.textoComentario}>
+                {comentario.texto}
+              </Text>
 
-    <View
-      key={comentario.id}
-      style={styles.comentario}
-    >
-
-      <Text style={styles.usuarioComentario}>
-        {comentario.usuario}
-      </Text>
-
-      <Text style={styles.textoComentario}>
-        {comentario.texto}
-      </Text>
-
-      <Text style={styles.fechaComentario}>
-        {comentario.fecha}
-      </Text>
-
-    </View>
-
-  ))
-}
-</View>
+              <Text style={styles.fechaComentario}>
+                {comentario.fecha}
+              </Text>
+            </View>
+          ))}
+        </View>
       </View>
 
     </ScrollView>
@@ -153,104 +132,68 @@ const comentarios = [
 }
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
-    backgroundColor: "rgb(0,0,59)",
     padding: 15,
   },
-
   back: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 15,
     gap: 10,
   },
-
   backText: {
-    color: "white",
     fontSize: 16,
   },
-
   card: {
-    backgroundColor: "#151535",
     borderRadius: 14,
     overflow: "hidden",
   },
-
   header: {
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
     padding: 12,
   },
-
   username: {
-    color: "white",
     fontWeight: "bold",
     fontSize: 16,
   },
-
   image: {
     width: "100%",
     height: 380,
   },
-
   actions: {
     flexDirection: "row",
     gap: 18,
     padding: 12,
   },
-
   likes: {
-    color: "white",
     fontWeight: "bold",
     paddingHorizontal: 12,
   },
-
   description: {
-    color: "white",
     padding: 12,
   },
-
-  comentariosContainer:{
-  padding:12,
-  marginTop:10,
-},
-
-
-tituloComentarios:{
-  color:"white",
-  fontSize:18,
-  fontWeight:"bold",
-  marginBottom:15,
-},
-
-
-comentario:{
-  marginBottom:15,
-  borderBottomWidth:1,
-  borderBottomColor:"#333",
-  paddingBottom:10,
-},
-
-
-usuarioComentario:{
-  color:"white",
-  fontWeight:"bold",
-  fontSize:14,
-},
-
-
-textoComentario:{
-  color:"#ddd",
-  marginTop:3,
-},
-
-
-fechaComentario:{
-  color:"#888",
-  fontSize:12,
-  marginTop:3,
-},
+  comentariosContainer: {
+    padding: 12,
+    marginTop: 10,
+  },
+  tituloComentarios: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 15,
+  },
+  comentario: {
+    marginBottom: 15,
+    borderBottomWidth: 1,
+    paddingBottom: 10,
+  },
+  usuarioComentario: {
+    fontWeight: "bold",
+    fontSize: 14,
+  },
+  textoComentario: {
+    marginTop: 3,
+  },
 });
